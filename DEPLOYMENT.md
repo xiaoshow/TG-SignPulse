@@ -1,5 +1,24 @@
 # ARM2 私有部署
 
+## 2026-10-24 已切换到原版
+
+当前服务为 `tg-signer-upstream.service`，镜像 `ghcr.io/amchii/tg-signer:0.9.1-webui`。
+数据在 `/opt/tg-signer/data`，授权码在 `/opt/tg-signer/private.env`（权限 600）。
+旧 TG-SignPulse 已停止，Quadlet 移至 `/opt/tg-signpulse/tg-signpulse.container.disabled`，旧数据原样保留。
+下文旧部署步骤仅用于回滚，不能与新服务同时绑定 8787。
+
+首次本人交互登录：
+
+```sh
+ssh -t arm2 'sudo podman exec -it tg-signer-upstream tg-signer login'
+```
+
+手机号、验证码、两步验证密码只在本人终端输入，不发聊天。仅登录不会创建每日签到任务。
+网页沿用 SSH 隧道 8787；访问授权码通过本人终端 `ssh arm2 'sudo cat /opt/tg-signer/private.env'` 查看。
+没有 admin 用户名；网页使用 Auth Code。登录验收后再配置每日 `/checkin`，不补发历史签到。
+
+## 旧版部署记录
+
 目标：SSH 别名 arm2，Oracle Linux 9 / ARM64。用 Podman 构建 Dockerfile，由 systemd Quadlet 管理。
 仅绑定 `127.0.0.1:8787`，不开放公网后台。
 

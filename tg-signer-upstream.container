@@ -1,0 +1,19 @@
+[Unit]
+Description=Upstream TG Signer private console
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+Image=ghcr.io/amchii/tg-signer:0.9.1-webui
+ContainerName=tg-signer-upstream
+PublishPort=127.0.0.1:8787:8080
+Volume=/opt/tg-signer/data:/opt/tg-signer:Z
+EnvironmentFile=/opt/tg-signer/private.env
+Environment=TZ=Asia/Shanghai
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=120
+
+[Install]
+WantedBy=multi-user.target
