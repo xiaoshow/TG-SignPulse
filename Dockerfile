@@ -1,7 +1,7 @@
 # ==========================================
 # Stage 1: Build Frontend (Vue 3 + Vite)
 # ==========================================
-FROM node:20-alpine AS frontend-builder
+FROM docker.io/library/node:20-alpine AS frontend-builder
 
 WORKDIR /app/frontend
 
@@ -14,7 +14,7 @@ RUN npm run build
 # ==========================================
 # Stage 2: Build & Run Backend (Python 3.12)
 # ==========================================
-FROM python:3.12-slim-bookworm
+FROM docker.io/library/python:3.12-slim-bookworm
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
