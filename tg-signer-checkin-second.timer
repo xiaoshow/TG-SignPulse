@@ -1,0 +1,10 @@
+[Unit]
+Description=Second Telegram check-in at 09:02 Shanghai
+
+[Timer]
+OnCalendar=*-*-* 09:02:00 Asia/Shanghai
+Persistent=false
+Unit=tg-signer-checkin-second.service
+
+[Install]
+WantedBy=timers.target

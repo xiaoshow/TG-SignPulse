@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily Telegram check-in for second account
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/podman run --rm --name tg-signer-checkin-second --env TZ=Asia/Shanghai --volume /opt/tg-signer/data:/opt/tg-signer:Z ghcr.io/amchii/tg-signer:0.9.1-webui tg-signer -a second_account run-once sheerid_daily
+TimeoutStartSec=180
