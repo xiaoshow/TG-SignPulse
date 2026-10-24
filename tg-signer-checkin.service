@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily Telegram check-in
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/podman run --rm --name tg-signer-checkin --env TZ=Asia/Shanghai --volume /opt/tg-signer/data:/opt/tg-signer:Z ghcr.io/amchii/tg-signer:0.9.1-webui tg-signer run-once sheerid_daily
+TimeoutStartSec=180

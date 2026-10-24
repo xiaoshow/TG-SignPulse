@@ -1,0 +1,6 @@
+{
+  "chats": [{"chat_id": "@sheeridverifier_bot", "name": "Daily check-in", "actions": [{"action": 1, "text": "/checkin"}], "action_interval": 1}],
+  "sign_at": "09:00",
+  "random_seconds": 0,
+  "sign_interval": 1
+}
